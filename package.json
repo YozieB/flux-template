@@ -1,0 +1,54 @@
+{
+    "name": "flux-template",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "rsbuild dev --port 3403",
+        "preview": "rsbuild preview",
+        "build": "rollup -c --bundleConfigAsCjs",
+        "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
+    },
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "style": "dist/index.css",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "require": "./dist/index.js"
+        },
+        "./styles": "./dist/styles.css"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "28.0.0",
+        "@rollup/plugin-image": "3.0.3",
+        "@rollup/plugin-node-resolve": "15.3.0",
+        "@rollup/plugin-terser": "0.4.4",
+        "@rollup/plugin-typescript": "12.1.0",
+        "@rsbuild/core": "1.2.19",
+        "@rsbuild/plugin-react": "1.1.1",
+        "@types/react": "18.3.18",
+        "@types/react-dom": "18.3.5",
+        "autoprefixer": "10.4.19",
+        "postcss": "8.4.39",
+        "postcss-prefixwrap": "1.51.0",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "rollup": "4.24.0",
+        "rollup-plugin-delete": "2.1.0",
+        "rollup-plugin-dts": "6.1.1",
+        "rollup-plugin-exclude-dependencies-from-bundle": "1.1.24",
+        "rollup-plugin-peer-deps-external": "2.2.4",
+        "rollup-plugin-postcss": "4.0.2",
+        "tailwindcss": "3.4.4",
+        "typescript": "5.7.3"
+    },
+    "peerDependencies": {
+        "react": "18.2.0",
+        "react-dom": "18.2.0"
+    }
+}
