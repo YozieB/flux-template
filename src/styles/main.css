@@ -1,8 +1,13 @@
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
+@theme {
+  --font-inter: "Inter", sans-serif;
+  --font-grotesk: "Konstant Grotesk Book", sans-serif;
+}
 
 * {
   box-sizing: border-box;

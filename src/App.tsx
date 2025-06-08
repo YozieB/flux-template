@@ -1,8 +1,9 @@
-import './index.css';
+import './styles/main.css';
 
 import React, { FC } from 'react';
 
 import { TemplateProps } from './types';
+import {Section} from "@/components/section";
 
 const beautifyDate = (date: Date) => {
     const formatter = new Intl.DateTimeFormat('en-US', {
@@ -26,23 +27,24 @@ export const Flux: FC<TemplateProps> = ({
     socials,
 }) => {
     return (
-        <main className='min-h-[100vh] flex justify-center items-center bg-[#F8F8F8]'>
-            <div className='bg-[#F0E04B] blur-2xl sticky left-[-100] z-0 h-[300px] w-[300px] rounded-full'></div>
-            <div className='mx-5 mt-60 grid grid-cols-3 gap-20 max-w-[595px]'>
+        <div className='flex justify-center items-center min-h-screen'>
+        <main className='bg-[#F8F8F8] font-[Inter] max-w-[595px] relative overflow-hidden p-6'>
+            <div className='bg-[#F0E04B] blur-2xl z-0 h-[300px] w-[300px] rounded-full absolute top-1/2 left-[-150px]' />
+            <div className='mx-5 grid grid-cols-3 gap-20'>
                 <div>
-                    <div className='text-[9px] flex justify-between'>
-                        <h3 className=''>CONTACTS</h3>
+                    <div className={`text-[9px] flex justify-between font-['Konstant_Grotesk']`}>
+                        <h3>CONTACTS</h3>
                         <p>01</p>
                     </div>
-                    <hr className="border-0,2px border-solid [0,2px] my-[4px]" />
+                    <hr className="border-0,2px border-solid [0,2px] my-1" />
                     {socials && (
                         <ul className='mt-[18px]'>
                             {socials.map((social) => <li key={social.name} className='text-[8px]'>{social.link}</li>)}
                         </ul>)}
                 </div>
                 <div className="col-span-2">
-                    <h1 className='text-[40px]'>{firstName} {lastName}, <br /> {role}</h1>
-                    <div className='font-[inter] grid grid-cols-2 gap-20 mt-[25px]'>
+                    <h1 className={`text-[40px] font-['Konstant_Grotesk'] leading-[1]`}>{firstName} {lastName}, <br /> {role}</h1>
+                    <div className='grid grid-cols-2 gap-20 mt-[25px]'>
                         <div className="">
                             <div className="">
                                 <div className='font-medium text-[9px] flex justify-between'>
@@ -60,7 +62,7 @@ export const Flux: FC<TemplateProps> = ({
                                         </li>)}
                                     </ul>)}
                             </div>
-                            <div className='mt-[32px]'>
+                            <div className='mt-8'>
                                 <div className='text-[9px] flex justify-between'>
                                     <h3>EDUCATION</h3>
                                     <p>03</p>
@@ -80,18 +82,13 @@ export const Flux: FC<TemplateProps> = ({
                             </div>
                         </div>
                         <div className="">
-                            <div>
-                                <div className='text-[9px] flex justify-between'>
-                                    <h3>SKILLS</h3>
-                                    <p>04</p>
-                                </div>
-                                <hr className="border-0,2px border-solid 0,2 my-4 my-25"/>
+                            <Section title='Навыки' orderNumber='01' wrapperStyles='h-[100px]'>
                                 {skills && (
                                     <ul className='text-[9px] grid grid-cols-2'>
                                         {skills.map(skill => <li key={skill}><p>{skill}</p></li>)}
                                     </ul>)}
-                            </div>
-                            <div className='mt-[32px]'>
+                            </Section>
+                            <div className='mt-8'>
                                 <div className='text-[9px] flex justify-between'>
                                     <h3>LANGUAGES</h3>
                                     <p>05</p>
@@ -111,5 +108,8 @@ export const Flux: FC<TemplateProps> = ({
                 </div>
             </div>
         </main>
+        </div>
     );
 };
+
+
