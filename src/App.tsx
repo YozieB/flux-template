@@ -5,6 +5,7 @@ import React, { FC } from 'react';
 import { TemplateProps } from './types';
 import {Section} from "@/components/section";
 
+
 const beautifyDate = (date: Date) => {
     const formatter = new Intl.DateTimeFormat('en-US', {
         month: 'long',
@@ -32,26 +33,18 @@ export const Flux: FC<TemplateProps> = ({
             <div className='bg-[#F0E04B] blur-2xl z-0 h-[300px] w-[300px] rounded-full absolute top-1/2 left-[-150px]' />
             <div className='mx-5 grid grid-cols-3 gap-20'>
                 <div>
-                    <div className={`text-[9px] flex justify-between font-['Konstant_Grotesk']`}>
-                        <h3>CONTACTS</h3>
-                        <p>01</p>
-                    </div>
-                    <hr className="border-0,2px border-solid [0,2px] my-1" />
-                    {socials && (
-                        <ul className='mt-[18px]'>
-                            {socials.map((social) => <li key={social.name} className='text-[8px]'>{social.link}</li>)}
-                        </ul>)}
+                    <Section  title='CONTACTS' orderNumber='01'>
+                        {socials && (
+                            <ul className='mt-[18px]'>
+                                {socials.map((social) => <li key={social.name} className='text-[8px]'>{social.link}</li>)}
+                            </ul>)}
+                    </Section>
                 </div>
                 <div className="col-span-2">
                     <h1 className={`text-[40px] font-['Konstant_Grotesk'] leading-[1]`}>{firstName} {lastName}, <br /> {role}</h1>
                     <div className='grid grid-cols-2 gap-20 mt-[25px]'>
                         <div className="">
-                            <div className="">
-                                <div className='font-medium text-[9px] flex justify-between'>
-                                    <h3>EXPIRIENCE</h3>
-                                    <p>02</p>
-                                </div>
-                                <hr className="border-0,2px border-solid  my-4 my-25"/>
+                            <Section title='EXPIRIENCE' orderNumber='02'>
                                 {experience && (
                                     <ul>
                                      {experience.map(exper =>
@@ -61,13 +54,8 @@ export const Flux: FC<TemplateProps> = ({
                                             <p className='text-[8px]'>{exper.description && exper.description}</p>
                                         </li>)}
                                     </ul>)}
-                            </div>
-                            <div className='mt-8'>
-                                <div className='text-[9px] flex justify-between'>
-                                    <h3>EDUCATION</h3>
-                                    <p>03</p>
-                                </div>
-                                <hr className="border-0,2px border-solid 0,2 my-4 my-25"/>
+                            </Section>
+                            <Section title='EDUCATION' orderNumber='03' wrapperStyles='mt-8'>
                                 {education && (
                                 <ul>
                                     {education.map((educate, index) => 
@@ -79,30 +67,25 @@ export const Flux: FC<TemplateProps> = ({
                                             <p className='text-[9px]'>{educate.degree}</p>
                                         </li>)}
                                 </ul>)}
-                            </div>
+                            </Section>
                         </div>
                         <div className="">
-                            <Section title='Навыки' orderNumber='01' wrapperStyles='h-[100px]'>
+                            <Section title='SKILLS' orderNumber='04' >
                                 {skills && (
                                     <ul className='text-[9px] grid grid-cols-2'>
-                                        {skills.map(skill => <li key={skill}><p>{skill}</p></li>)}
+                                        {skills.map(skill => <li className='mt-3' key={skill}><p>{skill}</p></li>)}
                                     </ul>)}
                             </Section>
-                            <div className='mt-8'>
-                                <div className='text-[9px] flex justify-between'>
-                                    <h3>LANGUAGES</h3>
-                                    <p>05</p>
-                                </div>
-                                <hr className="border-0,2px border-solid 0,2 my-4 my-25"/>
+                            <Section title='LANGUAGES' orderNumber='05' wrapperStyles='mt-8'>
                                 {languages && (
-                                    <ul>
+                                <ul>
                                     {languages.map(obj => 
-                                        <li className='text-[9px] flex justify-between w-full' key={obj.name}>
+                                        <li className='mt-3 text-[9px] flex justify-between w-full' key={obj.name}>
                                             <p>{obj.name}</p>
                                             <p>{obj.level}</p>
                                         </li>)}
                                 </ul>)}
-                            </div>
+                            </Section>
                         </div>
                     </div>
                 </div>
