@@ -29,11 +29,13 @@ export const Flux: FC<TemplateProps> = ({
 }) => {
     return (
         <div className='flex justify-center items-center min-h-screen'>
+        {/*  TODO: На основе пропса grain - добавлять зернистость  */}
         <main className='bg-[#F8F8F8] font-[Inter] max-w-[595px] relative overflow-hidden p-6'>
+            {/* TODO: Вынести кружок в отдельный компонент и добавить ему пропс, на основе которого он будет менять свой цвет */}
             <div className='bg-[#F0E04B] blur-2xl z-0 h-[300px] w-[300px] rounded-full absolute top-1/2 left-[-150px]' />
             <div className='mx-5 grid grid-cols-3 gap-20'>
                 <div>
-                    <Section  title='CONTACTS' orderNumber='01'>
+                     <Section title='CONTACTS' orderNumber='01'>
                         {socials && (
                             <ul className='mt-[18px]'>
                                 {socials.map((social) => <li key={social.name} className='text-[8px]'>{social.link}</li>)}

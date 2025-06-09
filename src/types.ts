@@ -29,4 +29,6 @@ export type TemplateProps = {
     languages?: LanguagesType[];
     education?: EducationType[];
     socials?: ContactsType[];
+    circle: 'yellow' | 'purple' | 'orange';
+    grain: boolean;
 };
