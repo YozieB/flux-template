@@ -30,7 +30,7 @@ export const Flux: FC<TemplateProps> = ({
     circle
 }) => {
     return (
-        <div className='flex justify-center items-center min-h-screen'>
+        <div className='flex justify-center items-center min-h-screen py-4'>
         {/*  TODO: На основе пропса grain - добавлять зернистость  */}
         <main className='bg-[#F8F8F8] font-[Inter] max-w-[1200px] relative overflow-hidden p-6'>
             {/* TODO: Вынести кружок в отдельный компонент и добавить ему пропс, на основе которого он будет менять свой цвет */}
@@ -40,8 +40,8 @@ export const Flux: FC<TemplateProps> = ({
                 <div>
                      <Section title='CONTACTS' orderNumber='01'>
                         {socials && (
-                            <ul className='mt-8'>
-                                {socials.map((social) => <li key={social.name} className={`text-base font-['Konstant_Grotesk']`}><a href={social.link} target="_blank"></a> {social.name} </li>)}
+                            <ul className='flex flex-col gap-2'>
+                                {socials.map((social) => <li key={social.name} className={`text-base uppercase font-['Konstant_Grotesk']`}><a href={social.link} target="_blank">{social.name}</a> </li>)}
                             </ul>)}
                     </Section>
                 </div>
@@ -51,20 +51,20 @@ export const Flux: FC<TemplateProps> = ({
                         <div className="">
                             <Section title='EXPIRIENCE' orderNumber='02'>
                                 {experience && (
-                                    <ul>
+                                    <ul className='flex flex-col gap-8'>
                                      {experience.map(exper =>
-                                        <li className='mt-5' key={exper.companyName + exper.role}>
+                                        <li className='flex flex-col gap-2' key={exper.companyName + exper.role}>
                                             <p className='text-base'>{`${beautifyDate(exper.dates[0])} — ${exper.isCurrentPosition ? 'Present' : beautifyDate(exper.dates[1])}`}</p>
-                                            <h2 className='text-2xl'>{exper.companyName}</h2>
+                                            <h2 className='text-2xl font-medium'>{exper.companyName}</h2>
                                             <p className='text-base'>{exper.description && exper.description}</p>
                                         </li>)}
                                     </ul>)}
                             </Section>
                             <Section title='EDUCATION' orderNumber='03' wrapperStyles='mt-10'>
                                 {education && (
-                                <ul>
+                                <ul className='flex flex-col gap-8'>
                                     {education.map((educate, index) => 
-                                        <li className='mt-4' key={index}>
+                                        <li className='flex flex-col gap-2' key={index}>
                                             <div className='text-base flex items-center gap-2'>
                                                 <p>{educate.dates[0].getFullYear()}</p>-<p>{educate.isOngoing ? 'Present' : educate.dates[1].getFullYear()}</p>
                                             </div>

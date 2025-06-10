@@ -17,7 +17,7 @@ export const Section: FC<SectionProps> = ({ children, title, orderNumber, wrappe
                 <h3>{title}</h3>
                 <p>{orderNumber}</p>
             </div>
-            <hr className="border-0,2px border-solid 0,2 my-1 my-25"/>
+            <hr className="border-0,2px border-solid 0,2 my-1 my-25 mb-5"/>
             {children}
         </section>
     )
