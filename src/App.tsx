@@ -4,6 +4,7 @@ import React, { FC } from 'react';
 
 import { TemplateProps } from './types';
 import {Section} from "@/components/section";
+import { Circle } from './components/circle-bacground';
 
 
 const beautifyDate = (date: Date) => {
@@ -26,47 +27,49 @@ export const Flux: FC<TemplateProps> = ({
     languages,
     education,
     socials,
+    circle
 }) => {
     return (
         <div className='flex justify-center items-center min-h-screen'>
         {/*  TODO: На основе пропса grain - добавлять зернистость  */}
-        <main className='bg-[#F8F8F8] font-[Inter] max-w-[595px] relative overflow-hidden p-6'>
+        <main className='bg-[#F8F8F8] font-[Inter] max-w-[1200px] relative overflow-hidden p-6'>
             {/* TODO: Вынести кружок в отдельный компонент и добавить ему пропс, на основе которого он будет менять свой цвет */}
-            <div className='bg-[#F0E04B] blur-2xl z-0 h-[300px] w-[300px] rounded-full absolute top-1/2 left-[-150px]' />
-            <div className='mx-5 grid grid-cols-3 gap-20'>
+            <Circle color={circle}/>
+            {/* <div className='bg-[#F0E04B] blur-2xl z-0 h-[300px] w-[300px] rounded-full absolute top-1/2 left-[-150px]' /> */}
+            <div className='mx-10 grid grid-cols-3 gap-20'>
                 <div>
                      <Section title='CONTACTS' orderNumber='01'>
                         {socials && (
-                            <ul className='mt-[18px]'>
-                                {socials.map((social) => <li key={social.name} className='text-[8px]'>{social.link}</li>)}
+                            <ul className='mt-8'>
+                                {socials.map((social) => <li key={social.name} className={`text-base font-['Konstant_Grotesk']`}><a href={social.link} target="_blank"></a> {social.name} </li>)}
                             </ul>)}
                     </Section>
                 </div>
                 <div className="col-span-2">
-                    <h1 className={`text-[40px] font-['Konstant_Grotesk'] leading-[1]`}>{firstName} {lastName}, <br /> {role}</h1>
-                    <div className='grid grid-cols-2 gap-20 mt-[25px]'>
+                    <h1 className={`text-[80px] font-['Konstant_Grotesk'] leading-[1]`}>{firstName} {lastName}, <br /> {role}</h1>
+                    <div className='grid grid-cols-2 gap-20 mt-12'>
                         <div className="">
                             <Section title='EXPIRIENCE' orderNumber='02'>
                                 {experience && (
                                     <ul>
                                      {experience.map(exper =>
-                                        <li className='mt-[18px]' key={exper.companyName + exper.role}>
-                                            <p className='text-[8px]'>{`${beautifyDate(exper.dates[0])} — ${exper.isCurrentPosition ? 'Present' : beautifyDate(exper.dates[1])}`}</p>
-                                            <h2 className='text-[12px]'>{exper.companyName}</h2>
-                                            <p className='text-[8px]'>{exper.description && exper.description}</p>
+                                        <li className='mt-5' key={exper.companyName + exper.role}>
+                                            <p className='text-base'>{`${beautifyDate(exper.dates[0])} — ${exper.isCurrentPosition ? 'Present' : beautifyDate(exper.dates[1])}`}</p>
+                                            <h2 className='text-2xl'>{exper.companyName}</h2>
+                                            <p className='text-base'>{exper.description && exper.description}</p>
                                         </li>)}
                                     </ul>)}
                             </Section>
-                            <Section title='EDUCATION' orderNumber='03' wrapperStyles='mt-8'>
+                            <Section title='EDUCATION' orderNumber='03' wrapperStyles='mt-10'>
                                 {education && (
                                 <ul>
                                     {education.map((educate, index) => 
-                                        <li className='mt-[15px]' key={index}>
-                                            <div className='text-[8px] flex items-center gap-2'>
+                                        <li className='mt-4' key={index}>
+                                            <div className='text-base flex items-center gap-2'>
                                                 <p>{educate.dates[0].getFullYear()}</p>-<p>{educate.isOngoing ? 'Present' : educate.dates[1].getFullYear()}</p>
                                             </div>
-                                            <h2 className='font-medium text-[12px]'>{educate.university}</h2>
-                                            <p className='text-[9px]'>{educate.degree}</p>
+                                            <h2 className='font-medium text-2xl'>{educate.university}</h2>
+                                            <p className='text-base'>{educate.degree}</p>
                                         </li>)}
                                 </ul>)}
                             </Section>
@@ -74,7 +77,7 @@ export const Flux: FC<TemplateProps> = ({
                         <div className="">
                             <Section title='SKILLS' orderNumber='04' >
                                 {skills && (
-                                    <ul className='text-[9px] grid grid-cols-2'>
+                                    <ul className='text-lg grid grid-cols-2'>
                                         {skills.map(skill => <li className='mt-3' key={skill}><p>{skill}</p></li>)}
                                     </ul>)}
                             </Section>
@@ -82,7 +85,7 @@ export const Flux: FC<TemplateProps> = ({
                                 {languages && (
                                 <ul>
                                     {languages.map(obj => 
-                                        <li className='mt-3 text-[9px] flex justify-between w-full' key={obj.name}>
+                                        <li className='mt-3 text-lg flex justify-between w-full' key={obj.name}>
                                             <p>{obj.name}</p>
                                             <p>{obj.level}</p>
                                         </li>)}

@@ -13,7 +13,7 @@ export const Section: FC<SectionProps> = ({ children, title, orderNumber, wrappe
 
     return (
         <section className={wrapperStyles}>
-            <div className={`text-[9px] flex justify-between font-['Konstant_Grotesk']`}>
+            <div className={`text-lg flex justify-between font-['Konstant_Grotesk']`}>
                 <h3>{title}</h3>
                 <p>{orderNumber}</p>
             </div>
