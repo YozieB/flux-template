@@ -64,10 +64,6 @@ export const mockData: TemplateProps = {
             name: 'Github',
         },
     ],
-    circle: {
-    orange: 'bg-[#FFB800]',
-    purple: 'bg-[#722a9b]',
-    yellow: 'bg-[#F0E04B]'
-},
-    grain: true,
+    circle: 'orange',
+    grain: false,
 };

@@ -29,10 +29,6 @@ export type TemplateProps = {
     languages?: LanguagesType[];
     education?: EducationType[];
     socials?: ContactsType[];
-    circle: {
-    orange: string;
-    purple: string;
-    yellow: string
-};
-    grain: boolean;
+    circle?: 'purple' | 'yellow' | 'orange';
+    grain?: boolean;
 };

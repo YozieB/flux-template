@@ -1,11 +1,12 @@
 import './styles/main.css';
 
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import { TemplateProps } from './types';
 import { Section } from '@/components/section';
-import { Circle } from './components/circle-bacground';
-import { GrainBackground } from './components/bacground';
+import { Circle } from './components/circle';
+import { Grain } from './components/grain';
+import { BiMoon, BiSun } from 'react-icons/bi';
 
 const beautifyDate = (date: Date) => {
     const formatter = new Intl.DateTimeFormat('en-US', {
@@ -30,15 +31,29 @@ export const Flux: FC<TemplateProps> = ({
     circle,
     grain,
 }) => {
+    const [darkMode, setDarkMode] = useState(false);
+
+    const toggleDarkMode = () => {
+        setDarkMode((prevMode) => !prevMode);
+        document.documentElement.classList.toggle('dark', !darkMode);
+    };
+
+    const darkModeIcon = darkMode ? <BiSun className="text-2xl" /> : <BiMoon className="text-2xl" />;
+
     return (
-        <div className="flex justify-center items-center min-h-screen py-4">
-            <GrainBackground grain={grain} wrapperStyles={'bg-[#F8F8F8] max-w-[1200px] max-h-[1800px] absolute w-full h-full'} />
-            {/*  TODO: На основе пропса grain - добавлять зернистость  */}
-            <main className="bg-[#F8F8F8] font-[Inter] max-w-[1200px] relative overflow-hidden p-6">
-                {/* TODO: Вынести кружок в отдельный компонент и добавить ему пропс, на основе которого он будет менять свой цвет */}
-                <Circle color={circle.purple} wrapperStyles={'blur-3xl h-[500px] w-[500px] rounded-full absolute top-1/2 left-[-200px]'} />
+        <div
+            className={`flex relative justify-center items-center min-h-screen dark:text-white text-neutral-800 bg-[#F8F8F8] dark:bg-[#1B1B1B]`}
+        >
+            <div className={`absolute h-0.5 dark:bg-neutral-700 bg-neutral-200 w-full left-0 z-20 top-20`} />
+            <div className={`absolute h-0.5 dark:bg-neutral-700 bg-neutral-200 w-full left-0 z-20 bottom-20`} />
+            {grain && <Grain />}
+            <main className={`font-[Inter] max-w-[1200px] relative overflow-hidden py-28 min-h-screen`}>
+                <div className={`absolute w-0.5 dark:bg-neutral-700 bg-neutral-200 h-full left-0 z-20 top-0 bottom-0`} />
+                <div className={`absolute w-0.5 dark:bg-neutral-700 bg-neutral-200 h-full right-0 z-20 top-0 bottom-0`} />
+
+                {circle && <Circle color={circle} />}
                 {/* <div className='bg-[#F0E04B] blur-2xl z-0 h-[300px] w-[300px] rounded-full absolute top-1/2 left-[-150px]' /> */}
-                <div className="mx-10 grid grid-cols-3 gap-20">
+                <div className="px-10 grid grid-cols-3 gap-20">
                     <div>
                         <Section title="CONTACTS" orderNumber="01">
                             {socials && (
@@ -55,6 +70,9 @@ export const Flux: FC<TemplateProps> = ({
                         </Section>
                     </div>
                     <div className="col-span-2">
+                        <button type="button" className="absolute right-10 top-10 print:hidden" onClick={toggleDarkMode}>
+                            {darkModeIcon}
+                        </button>
                         <h1 className={`text-[80px] font-['Konstant_Grotesk'] leading-[1]`}>
                             {firstName} {lastName}, <br /> {role}
                         </h1>
@@ -65,10 +83,10 @@ export const Flux: FC<TemplateProps> = ({
                                         <ul className="flex flex-col gap-8">
                                             {experience.map((exper) => (
                                                 <li className="flex flex-col gap-2" key={exper.companyName + exper.role}>
-                                                    <p className="text-base">{`${beautifyDate(exper.dates[0])} — ${
-                                                        exper.isCurrentPosition ? 'Present' : beautifyDate(exper.dates[1])
-                                                    }`}</p>
-                                                    <h2 className="text-2xl font-medium">{exper.companyName}</h2>
+                                                    <h2 className="text-2xl font-semibold">{exper.companyName}</h2>
+                                                    <p className="text-base text-neutral-400 dark:text-neutral-500">{`${beautifyDate(
+                                                        exper.dates[0]
+                                                    )} — ${exper.isCurrentPosition ? 'Present' : beautifyDate(exper.dates[1])}`}</p>
                                                     <p className="text-base">{exper.description && exper.description}</p>
                                                 </li>
                                             ))}
@@ -81,10 +99,12 @@ export const Flux: FC<TemplateProps> = ({
                                             {education.map((educate, index) => (
                                                 <li className="flex flex-col gap-2" key={index}>
                                                     <div className="text-base flex items-center gap-2">
-                                                        <p>{educate.dates[0].getFullYear()}</p>-
-                                                        <p>{educate.isOngoing ? 'Present' : educate.dates[1].getFullYear()}</p>
+                                                        <p className="text-neutral-400 dark:text-neutral-500">
+                                                            {educate.dates[0].getFullYear()} —{' '}
+                                                            {educate.isOngoing ? 'Present' : educate.dates[1].getFullYear()}
+                                                        </p>
                                                     </div>
-                                                    <h2 className="font-medium text-2xl">{educate.university}</h2>
+                                                    <h2 className="font-semibold text-2xl">{educate.university}</h2>
                                                     <p className="text-base">{educate.degree}</p>
                                                 </li>
                                             ))}
@@ -110,7 +130,7 @@ export const Flux: FC<TemplateProps> = ({
                                             {languages.map((obj) => (
                                                 <li className="mt-3 text-lg flex justify-between w-full" key={obj.name}>
                                                     <p>{obj.name}</p>
-                                                    <p>{obj.level}</p>
+                                                    <p className="text-neutral-400 dark:text-neutral-500">{obj.level}</p>
                                                 </li>
                                             ))}
                                         </ul>
