@@ -18,7 +18,7 @@ export const Circle: FC<CircleProps> = ({ color }) => {
             <img
                 src={circleImage}
                 alt="circle"
-                className={`blur-3xl absolute left-[-250px] h-[500px] w-[500px] top-1/2 -translate-y-1/2`}
+                className={`max-[860px]:hidden blur-3xl absolute left-[-250px] h-[500px] w-[500px] top-1/2 -translate-y-1/4`}
                 style={{ background: circleColors[color] }}
             />
         );
@@ -26,7 +26,7 @@ export const Circle: FC<CircleProps> = ({ color }) => {
 
     return (
         <div
-            className={`blur-3xl absolute left-[-250px] h-[500px] w-[500px] top-1/2 -translate-y-1/4 rounded-full`}
+            className={`max-[860px]:hidden blur-3xl absolute left-[-250px] h-[500px] w-[500px] top-1/2 -translate-y-1/4 rounded-full`}
             style={{ background: circleColors[color] }}
         />
     );

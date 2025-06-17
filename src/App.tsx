@@ -7,6 +7,7 @@ import { Section } from '@/components/section';
 import { Circle } from './components/circle';
 import { Grain } from './components/grain';
 import { BiMoon, BiSun } from 'react-icons/bi';
+import { Link } from "@/components/link";
 
 const beautifyDate = (date: Date) => {
     const formatter = new Intl.DateTimeFormat('en-US', {
@@ -44,18 +45,15 @@ export const Flux: FC<TemplateProps> = ({
         <div
             className={`flex relative justify-center items-center min-h-screen dark:text-white text-neutral-800 bg-[#F8F8F8] dark:bg-[#1B1B1B]`}
         >
-            <div className={`absolute h-0.5 dark:bg-neutral-700 bg-neutral-200 w-full left-0 z-20 top-20`} />
-            <div className={`absolute h-0.5 dark:bg-neutral-700 bg-neutral-200 w-full left-0 z-20 bottom-20`} />
+            <div className={`absolute h-0.5 dark:bg-neutral-700 bg-neutral-200 w-full left-0 z-20 top-20 hidden sm:block`} />
+            <div className={`absolute h-0.5 dark:bg-neutral-700 bg-neutral-200 w-full left-0 z-20 bottom-20 hidden sm:block`} />
             {grain && <Grain />}
-            <main className={`font-[Inter] max-w-[1200px] relative overflow-hidden py-28 min-h-screen`}>
-                <div className={`absolute w-0.5 dark:bg-neutral-700 bg-neutral-200 h-full left-0 z-20 top-0 bottom-0`} />
-                <div className={`absolute w-0.5 dark:bg-neutral-700 bg-neutral-200 h-full right-0 z-20 top-0 bottom-0`} />
-
+            <main className='font-[Inter] max-w-[1200px] relative overflow-hidden sm:py-28 py-12 min-h-screen'>
+                <div className={`absolute w-0.5 max-[1200px]:hidden dark:bg-neutral-700 bg-neutral-200 h-full left-0 z-20 top-0 bottom-0`} />
+                <div className={`absolute w-0.5 max-[1200px]:hidden dark:bg-neutral-700 bg-neutral-200 h-full right-0 z-20 top-0 bottom-0`} />
                 {circle && <Circle color={circle} />}
-                {/* <div className='bg-[#F0E04B] blur-2xl z-0 h-[300px] w-[300px] rounded-full absolute top-1/2 left-[-150px]' /> */}
-                <div className="px-10 grid grid-cols-3 gap-20">
-                    <div>
-                        <Section title="CONTACTS" orderNumber="01">
+                <div className="sm:px-10 px-4 min-[860px]:grid grid-cols-3 gap-20 max-[860px]:gap-10 flex flex-col">
+                        <Section title="КОНТАКТЫ" orderNumber="01" wrapperStyles={'max-[860px]:hidden'}>
                             {socials && (
                                 <ul className="flex flex-col gap-2">
                                     {socials.map((social) => (
@@ -68,17 +66,29 @@ export const Flux: FC<TemplateProps> = ({
                                 </ul>
                             )}
                         </Section>
-                    </div>
                     <div className="col-span-2">
                         <button type="button" className="absolute right-10 top-10 print:hidden" onClick={toggleDarkMode}>
                             {darkModeIcon}
                         </button>
-                        <h1 className={`text-[80px] font-['Konstant_Grotesk'] leading-[1]`}>
+                        <h1 className={`sm:text-[80px] text-5xl font-['Konstant_Grotesk'] leading-[1]`}>
                             {firstName} {lastName}, <br /> {role}
                         </h1>
-                        <div className="grid grid-cols-2 gap-20 mt-12">
+                        <div className="sm:grid grid-cols-2 min:[860px]:gap-20 gap-10 mt-12 flex flex-col">
                             <div className="">
-                                <Section title="EXPIRIENCE" orderNumber="02">
+                                <Section title="КОНТАКТЫ" orderNumber="01" wrapperStyles={'min-[860px]:hidden visible mb-8'}>
+                                    {socials && (
+                                        <ul className="flex flex-col gap-2">
+                                            {socials.map((social) => (
+                                                <li key={social.name} className={`text-base uppercase font-['Konstant_Grotesk']`}>
+                                                    <a href={social.link} target="_blank">
+                                                        {social.name}
+                                                    </a>{' '}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </Section>
+                                <Section title="ОПЫТ" orderNumber="02">
                                     {experience && (
                                         <ul className="flex flex-col gap-8">
                                             {experience.map((exper) => (
@@ -93,7 +103,7 @@ export const Flux: FC<TemplateProps> = ({
                                         </ul>
                                     )}
                                 </Section>
-                                <Section title="EDUCATION" orderNumber="03" wrapperStyles="mt-10">
+                                <Section title="ОБРАЗОВАНИЕ" orderNumber="03" wrapperStyles="mt-8">
                                     {education && (
                                         <ul className="flex flex-col gap-8">
                                             {education.map((educate, index) => (
@@ -113,7 +123,7 @@ export const Flux: FC<TemplateProps> = ({
                                 </Section>
                             </div>
                             <div className="">
-                                <Section title="SKILLS" orderNumber="04">
+                                <Section title="НАВЫКИ" orderNumber="04">
                                     {skills && (
                                         <ul className="text-lg grid grid-cols-2">
                                             {skills.map((skill) => (
@@ -124,7 +134,7 @@ export const Flux: FC<TemplateProps> = ({
                                         </ul>
                                     )}
                                 </Section>
-                                <Section title="LANGUAGES" orderNumber="05" wrapperStyles="mt-8">
+                                <Section title="ЯЗЫКИ" orderNumber="05" wrapperStyles="mt-8">
                                     {languages && (
                                         <ul>
                                             {languages.map((obj) => (
@@ -141,6 +151,9 @@ export const Flux: FC<TemplateProps> = ({
                     </div>
                 </div>
             </main>
+            <footer className="flex items-center justify-center gap-3 absolute bottom-7 left-1/2 -translate-x-1/2">
+                Создано в <Link text="Resumify.ru" href="https://resumify.ru" target="_blank" rel="noopener noreferrer" />
+            </footer>
         </div>
     );
 };
