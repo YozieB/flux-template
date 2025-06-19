@@ -64,6 +64,4 @@ export const mockData: TemplateProps = {
             name: 'Github',
         },
     ],
-    circle: 'orange',
-    grain: false,
 };
