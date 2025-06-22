@@ -25,6 +25,7 @@ export type TemplateProps = {
     phone?: string;
     role?: string;
     skills?: string[];
+    hobbies?: string[];
     experience?: ExperienceType[];
     languages?: LanguagesType[];
     education?: EducationType[];

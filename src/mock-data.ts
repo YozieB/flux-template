@@ -5,6 +5,7 @@ export const mockData: TemplateProps = {
     lastName: 'Doe',
     role: 'Frontend Developer',
     skills: ['HTML', 'CSS', 'REACT', 'ANGULAR', 'java', 'node.js', 'mysql'],
+    hobbies: ['Катание на лыжах', 'Чесать яйца', 'Дрочить на площади ночью'],
     languages: [
         { name: 'Русский', level: 'C2' },
         { name: 'Белорусский', level: 'C2' },
