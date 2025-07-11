@@ -17,35 +17,43 @@ const beautifyDate = (date: Date) => {
 
 export const Flux: FC<TemplateProps> = ({ firstName, lastName, role, experience, education, socials, skills, languages, hobbies }) => {
     return (
-        <div className="flex relative justify-center items-center min-h-screen bg-[#141414] py-24 text-[#94BA81] font-[Press_Start_2P]">
-            <div className="w-[600px]">
+        <div className="flex relative justify-center items-center min-h-screen bg-[#141414] py-24 text-[#94BA81]">
+            <div className="w-[1000px]">
                 <div className="flex justify-between py-12 ">
                     <div>
-                        <h1>
+                        <h1 className="text-3xl">
                             {firstName} {lastName}
                         </h1>
-                        <p>{role}</p>
+                        <p className="text-xl opacity-40">{role}</p>
                     </div>
                     <div>
-                        <div className="flex">
-                            <ul className="flex">
-                                <li className="font-[Press_Start_2P]">sdfsd</li>
+                        {!!socials?.length && (
+                            <ul className="grid grid-cols-3 divide-x divide-solid divide-[#94BA81]">
+                                {socials.map((social) => {
+                                    return (
+                                        <li key={social.link} className="px-3">
+                                            <a target="_blank" href={social.link}>
+                                                {social.name} <img src="./assets/Vector.svg" alt="" />
+                                            </a>
+                                        </li>
+                                    );
+                                })}
                             </ul>
-                        </div>
+                        )}
                     </div>
                 </div>
-                <div className="grid grid-cols-2 gap-11">
+                <div className="grid grid-cols-2 gap-[80px] pt-11">
                     <div>
                         {!!experience?.length && (
                             <ul>
-                                <h2>Expirience</h2>
+                                <h2 className="text-lg opacity-40">Expirience</h2>
                                 {experience.map((exp) => {
                                     return (
-                                        <li key={exp.companyName + '_' + exp.role} className="pt-6">
-                                            <h3 className="pb-2">
+                                        <li key={exp.companyName + '_' + exp.role} className="pt-11">
+                                            <h3 className="pb-4">
                                                 {exp.companyName} / {exp.role}
                                             </h3>
-                                            <p className="pb-3">
+                                            <p className="pb-10 opacity-40">
                                                 {beautifyDate(exp.dates[0])} - {beautifyDate(exp.dates[1])}
                                             </p>
                                             <p>{exp.description}</p>
@@ -58,14 +66,14 @@ export const Flux: FC<TemplateProps> = ({ firstName, lastName, role, experience,
                     <div>
                         {!!education?.length && (
                             <ul>
-                                <h2>Education</h2>
+                                <h2 className="text-lg">Education</h2>
                                 {education.map((educate, index) => {
                                     return (
-                                        <li key={index} className="pt-6">
+                                        <li key={index} className="pt-11">
                                             <p>
                                                 {educate.university} / {educate.degree}
                                             </p>
-                                            <p>
+                                            <p className="opacity-40">
                                                 {educate.dates[0].getFullYear()} - {educate.dates[1].getFullYear()}
                                             </p>
                                         </li>
@@ -75,12 +83,25 @@ export const Flux: FC<TemplateProps> = ({ firstName, lastName, role, experience,
                         )}
                         {!!skills?.length && (
                             <ul className=" ">
-                                <h2 className="py-6">Skills</h2>
-                                <div className="grid grid-cols-2 gap-2">
-                                    {skills.map((skill) => {
-                                        return <li className="">{skill}</li>;
+                                <h2 className="text-lg pt-12 opacity-40">Skills</h2>
+                                <div className="grid grid-cols-2 gap-4 pt-6">
+                                    {skills.map((skill, index) => {
+                                        return <li key={index}>{skill}</li>;
                                     })}
                                 </div>
+                            </ul>
+                        )}
+                        {!!languages?.length && (
+                            <ul className="pt-12">
+                                <h2 className="text-lg opacity-40">Languages</h2>
+                                {languages.map((language) => {
+                                    return (
+                                        <li key={language.name + '_' + language.level} className="pt-6">
+                                            <p>{language.name}</p>
+                                            <p className="opacity-40">{language.level}</p>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         )}
                     </div>
