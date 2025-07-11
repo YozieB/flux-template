@@ -1,4 +1,5 @@
 import './styles/main.css';
+import Vector from './assets/Vector.svg';
 
 import React, { FC } from 'react';
 
@@ -28,13 +29,15 @@ export const Flux: FC<TemplateProps> = ({ firstName, lastName, role, experience,
                     </div>
                     <div>
                         {!!socials?.length && (
-                            <ul className="grid grid-cols-3 divide-x divide-solid divide-[#94BA81]">
-                                {socials.map((social) => {
+                            <ul className="flex">
+                                {socials.map((social, index) => {
                                     return (
-                                        <li key={social.link} className="px-3">
+                                        <li key={social.link} className="flex">
+                                            {index > 0 && <p className="px-3">/</p>}
                                             <a target="_blank" href={social.link}>
-                                                {social.name} <img src="./assets/Vector.svg" alt="" />
+                                                {social.name}
                                             </a>
+                                            <img className="pl-2 h-6 w-6" src={Vector} alt="" />
                                         </li>
                                     );
                                 })}
